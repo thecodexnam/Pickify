@@ -55,6 +55,7 @@ export const cartStyles = {
   orderSummaryTotalValue: "text-emerald-50",
   checkoutButton: "mt-6 sm:mt-8 w-full bg-emerald-400 hover:bg-emerald-300 text-black font-bold py-3 sm:py-4 cursor-pointer rounded-xl transition-all duration-300 text-sm sm:text-base",
   continueShoppingBottom: "mt-4 sm:mt-6 text-center"
+  
 };
 
 // assets/contactStyles.js
