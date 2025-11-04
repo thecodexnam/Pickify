@@ -67,7 +67,6 @@ const Navbar = () => {
                             </div>
                               <div className={`${navbarStyles.navIndicator}
                               ${activeTab === item.path ? navbarStyles.activeIndicator : navbarStyles.inactiveIndicator}`} />
-                            
                           </Link>
                         ))}
                     </div>
