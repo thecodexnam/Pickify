@@ -1,13 +1,30 @@
 import React, { useState } from 'react'
 import {navbarStyles } from '../assets/dummyStyles'
-import { Link, useLocation } from 'react-router-dom'
+import { Link, useLocation, useNavigate } from 'react-router-dom'
 import logo from '../assets/logo.png'
 import { navItems } from '../assets/Dummy'
+import { FiUser } from 'react-icons/fi'
 
 const Navbar = () => {
     const location = useLocation()
+    const navigate = useNavigate()
+
     const[scrolled,setScrolled] = useState(false)
     const [activeTab, setActiveTab] = useState(location.pathname)
+    const [isOpen,setIsOpen] = useState(false)
+
+    const [isLoggedIn,setIsLoggedIn] = useState(
+      Boolean(localStorage.getItem('authToken'))
+    )
+
+    // DEFINE LOGOUT FUNCTION
+    const handleLogout = ()=>{
+      localStorage.removeItem('authToken');
+      localStorage.removeItem('userData')
+      localStorage.clear()
+      window.dispatchEvent(new Event('authStateChanged'))
+      navigate('/')
+    }
 
     // Add scroll event listener
     React.useEffect(() => {
@@ -69,6 +86,21 @@ const Navbar = () => {
                               ${activeTab === item.path ? navbarStyles.activeIndicator : navbarStyles.inactiveIndicator}`} />
                           </Link>
                         ))}
+                    </div>
+
+                    {/* MOBILE HAMBURGER*/}
+                    <div className={navbarStyles.iconsContainer}>
+                        {isLoggedIn ?(
+                          <button onClick={handleLogout} className={navbarStyles.loginLink} aria-label='Logout'>
+                            <FiUser className={navbarStyles.loginIcon}/>
+                            <span className='ml-1 text-white'>Logout</span>
+                          </button>
+                        ) : (
+                          <Link to='/login' className={navbarStyles.loginLink} aria-label='Login'>
+                            <FiUser className={navbarStyles.loginIcon}/>
+                            <span className='ml-1 text-white'>Login</span>
+                          </Link>
+                        ) }
                     </div>
             </div>
         </div>
