@@ -5,6 +5,8 @@ import logo from '../assets/logo.png'
 import { navItems } from '../assets/Dummy'
 import { FiUser } from 'react-icons/fi'
 import { useCart } from '../CartContext'
+import { FaOpencart } from 'react-icons/fa'
+
 
 const Navbar = () => {
     const location = useLocation()
@@ -108,9 +110,10 @@ const Navbar = () => {
                           </Link>
                         )}
                         <Link to='/cart' className={navbarStyles.cartLink}>
-                            <faOpenCart className={`${navbarStyles.cartIcon} ${cartBounce ? 'animate-bounce' : ''}`} />
+                            <FaOpencart
+                             className={`${navbarStyles.cartIcon} ${cartBounce ? 'animate-bounce' : ''}`} />
                             {cartCount > 0 && (
-                              <span className={cartStyles.cartBadge}>
+                              <span className={navbarStyles.cartBadge}>
                                 {cartCount}
                               </span>
                             )}
