@@ -1,5 +1,5 @@
 import React, { useState } from 'react'
-import {navbarStyles } from '../assets/dummyStyles'
+import {cartStyles, navbarStyles } from '../assets/dummyStyles'
 import { Link, useLocation, useNavigate } from 'react-router-dom'
 import logo from '../assets/logo.png'
 import { navItems } from '../assets/Dummy'
@@ -12,6 +12,7 @@ const Navbar = () => {
     const[scrolled,setScrolled] = useState(false)
     const [activeTab, setActiveTab] = useState(location.pathname)
     const [isOpen,setIsOpen] = useState(false)
+    const [cartBounce,setCartBounce] = useState(false)
 
     const [isLoggedIn,setIsLoggedIn] = useState(
       Boolean(localStorage.getItem('authToken'))
@@ -100,7 +101,12 @@ const Navbar = () => {
                             <FiUser className={navbarStyles.loginIcon}/>
                             <span className='ml-1 text-white'>Login</span>
                           </Link>
-                        ) }
+                        )}
+                        <Link to='/cart' className={navbarStyles.cartLink}>
+                            <faOpenCart className={`${navbarStyles.cartIcon} ${cartBounce ? 'animate-bounce' : ''}`} />
+                            {}
+                        </Link>
+
                     </div>
             </div>
         </div>
