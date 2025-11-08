@@ -37,6 +37,16 @@ const Navbar = () => {
       return () =>window.removeEventListener('scroll',handleScroll)
     },[])
 
+    // BOUNCE THE CART ITEM WHEN ADD TO CART AN ITEM
+    useEffect (()=>{
+      if(cartCount > PrevCartCountRef.current){
+        setCartBounce(true)
+        const timer = setTimeout(() => {
+          setCartBounce(false)
+        }, 1000);
+      }
+    })
+
     // DEFINE LOGOUT FUNCTION
     const handleLogout = ()=>{
       localStorage.removeItem('authToken');
