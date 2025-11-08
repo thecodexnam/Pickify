@@ -200,6 +200,8 @@ const Navbar = () => {
         </div>
       </div>
     </div>
+      {/* ANIMATIONS */}
+      <style>{navbarStyles.customCSS}</style>
   </nav>
   )
 }
