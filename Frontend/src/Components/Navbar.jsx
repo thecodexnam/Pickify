@@ -132,55 +132,57 @@ const Navbar = () => {
         </div>
 
         {/* MOBILE MENU OVERLAY */}
-        <div
-  className={`${navbarStyles.mobileOverlay} fixed inset-0 z-40 bg-black/50 transition-opacity duration-300
-    ${isOpen ? 'pointer-events-auto opacity-100' : 'pointer-events-none opacity-0'}`}
-  onClick={() => setIsOpen(false)}
->
-  <aside
-    ref={mobileMenuRef}
-    onClick={(e) => e.stopPropagation()}
-    className={`${navbarStyles.mobilePanel} fixed right-0 top-0 bottom-0 z-50 w-4/5 max-w-sm bg-white shadow-xl
-      transform transition-transform duration-300 will-change-transform
-      ${isOpen ? 'translate-x-0' : 'translate-x-full'}`}
-  >
-    {/* Header */}
-    <div className={`${navbarStyles.mobileHeader} relative flex items-center gap-3 p-4 border-b`}>
-      <div className="flex items-center gap-2">
-        <img src={logo} alt="Pickify Logo" className="h-7 w-7 object-contain" />
-        <span className={`${navbarStyles.mobileLogoText}`}>Picify</span>
-      </div>
-
-      <button
-        onClick={() => setIsOpen(false)}
-        className={`${navbarStyles.closeButton} absolute right-3 top-3 p-2`}
-        aria-label="Close Menu"
+      <div
+      className={`${navbarStyles.mobileOverlay} 
+        ${isOpen ? 'pointer-events-auto opacity-100' : 'pointer-events-none opacity-0'}
+          fixed inset-0 z-40 bg-black bg-opacity-50 transition-opacity duration-300'}`}
+      onClick={() => setIsOpen(false)}
       >
-        <FiX className="h-6 w-6 text-black" />
-      </button>
-    </div>
+      <div
+        ref={mobileMenuRef}
+        onClick={(e) => e.stopPropagation()}
+        className={`${navbarStyles.mobilePanel} 
+          transform transition-transform duration-300 will-change-transform
+          ${isOpen ? 'translate-x-0' : 'translate-x-full'}
+            fixed right-0 top-0 bottom-0 z-50 w-4/5 max-w-sm`}
+      >
+        {/* Header */}
+        <div className={`${navbarStyles.mobileHeader} relative flex items-center gap-3 p-4 border-b`}>
+          <div className="flex items-center gap-2">
+            <img src={logo} alt="Pickify Logo" className="h-7 w-7 object-contain" />
+            <span className={`${navbarStyles.mobileLogoText}`}>Picify</span>
+          </div>
 
-    {/* Items */}
-    <nav className={`${navbarStyles.mobileItemsContainer} flex flex-col p-2`}>
-      {navItems.map((item, index) => (
-        <Link
-          key={item.name}
-          to={item.path}
-          className={`${navbarStyles.mobileItem} transition-opacity duration-300`}
-          style={{
-            transitionDelay: isOpen ? `${index * 100}ms` : '0ms',
-            opacity: isOpen ? 1 : 0,
-            transform: `translateX(${isOpen ? 0 : 20}px)`,
-          }}
-          onClick={() => setIsOpen(false)}
-        >
-          <span className={navbarStyles.mobileItemIcon}>{item.icon}</span>
-          <span className={navbarStyles.mobileItemText}>{item.name}</span>
-        </Link>
-      ))}
-    </nav>
-  </aside>
-</div>
+          <button
+            onClick={() => setIsOpen(false)}
+            className={`${navbarStyles.closeButton} absolute right-3 top-3 p-2`}
+            aria-label="Close Menu"
+          >
+            <FiX className="h-6 w-6 text-white" />
+          </button>
+        </div>
+
+        {/* Items */}
+        <nav className={`${navbarStyles.mobileItemsContainer} flex flex-col p-2`}>
+          {navItems.map((item, index) => (
+            <Link
+              key={item.name}
+              to={item.path}
+              className={`${navbarStyles.mobileItem} transition-opacity duration-300`}
+              style={{
+                transitionDelay: isOpen ? `${index * 100}ms` : '0ms',
+                opacity: isOpen ? 1 : 0,
+                transform: `translateX(${isOpen ? 0 : 20}px)`,
+              }}
+              onClick={() => setIsOpen(false)}
+            >
+              <span className={navbarStyles.mobileItemIcon}>{item.icon}</span>
+              <span className={navbarStyles.mobileItemText}>{item.name}</span>
+            </Link>
+          ))}
+        </nav>
+      </div>
+    </div>
 
     </nav>
   )
