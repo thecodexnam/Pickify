@@ -163,7 +163,7 @@ const Navbar = () => {
         </div>
 
         {/* Items */}
-        <nav className={`${navbarStyles.mobileItemsContainer} flex flex-col p-2`}>
+        <div className={`${navbarStyles.mobileItemsContainer} flex flex-col p-2`}>
           {navItems.map((item, index) => (
             <Link
               key={item.name}
@@ -180,11 +180,27 @@ const Navbar = () => {
               <span className={navbarStyles.mobileItemText}>{item.name}</span>
             </Link>
           ))}
-        </nav>
+          <div className={navbarStyles.mobileButtons}>
+            {isLoggedIn ? (
+              <button onClick={() =>{
+                handleLogout();
+                setIsOpen(false)
+              }}
+              className={navbarStyles.loginButton}>
+                <FiUser className={navbarStyles.loginButtonIcon}/>
+                Logout
+              </button>
+            ) : (
+              <Link to ='/login' className={navbarStyles.loginButton} onClick={() => setIsOpen(false)}>
+                <FiUser className={navbarStyles.loginButtonIcon}/>
+                Login
+              </Link>
+            )}
+          </div>
+        </div>
       </div>
     </div>
-
-    </nav>
+  </nav>
   )
 }
 
