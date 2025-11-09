@@ -41,10 +41,10 @@ const Navbar = () => {
     useEffect (()=>{
       if(cartCount > PrevCartCountRef.current){
         setCartBounce(true)
-        const timer = setTimeout(() => {
-          setCartBounce(false)
-        }, 1000);
+        const timer = setTimeout(() => setCartBounce(false),1000);
+        return () => clearTimeout(timer)
       }
+      PrevCartCountRef.current = cartCount;
     })
 
     // DEFINE LOGOUT FUNCTION
