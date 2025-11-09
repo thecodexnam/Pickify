@@ -45,7 +45,18 @@ const Navbar = () => {
         return () => clearTimeout(timer)
       }
       PrevCartCountRef.current = cartCount;
-    })
+},[cartCount])
+
+    // LISTEN FOR AUTH CHANGES
+    useEffect(() => {
+      const handler = () => {
+        setIsLoggedIn(Boolean(localStorage.getItem('authToken')))
+      }
+      window.addEventListener('authStateChanged',handler)
+      return () => window.removeEventListener('authStateChanged',handler)
+    },[])
+
+    //CLOSE MOBILE MENU WHEN CLICK OUTSIDE
 
     // DEFINE LOGOUT FUNCTION
     const handleLogout = ()=>{
