@@ -3,6 +3,8 @@ import { bannerStyles } from '../assets/dummyStyles'
 import { FiTruck } from 'react-icons/fi'
 
 const BannerHome = ({onSearch}) => {
+
+        
   return (
     <div className='relative overflow-hidden pt-16'>
         {/* BackGround Gradient */}
@@ -21,8 +23,21 @@ const BannerHome = ({onSearch}) => {
                            <FiTruck className='mr-2'/> Free Delivery on order over ₹500
                         </span>
                     </div>
-                </div>
+                    <h1 className={bannerStyles.heading}>
+                        Fresh{' '}
+                        <span className={bannerStyles.headingItalic}>
+                            Groceries
+                        </span>
+                        <br/> Delivered to Your Door
+                    </h1>
+                    <p className={bannerStyles.paragraph}>
+                        Pickify aims to bring convenience, affordability, and smart choices to everyday grocery shopping — because freshness and savings should always go hand in hand.
+                    </p>
 
+                    <form onSubmit={handleSubmit} className={bannerStyles.form} > 
+                        <input type='text' value={}></input>
+                    </form>
+                </div>
             </div>
         </div>
     </div>
