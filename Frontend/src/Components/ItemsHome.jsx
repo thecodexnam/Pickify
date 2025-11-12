@@ -4,11 +4,13 @@ import BannerHome from './BannerHome'
 import { useNavigate } from 'react-router-dom'
 import { FaThList } from 'react-icons/fa'
 import {categories} from '../assets/dummyData'
+import { useCart } from '../CartContext'
 
-const ItemsHome = () => {
-  cons[activeCategory, setActiceCategory] = useState(()=> {
-    return localStorage.getItem('activeCategory' || 'All')
-  })
+  const ItemsHome = () => {
+    const [activeCategory, setActiveCategory] = useState(() => {
+    return localStorage.getItem('activeCategory') || 'All';
+  });
+
 
     useEffect(()=>{
       localStorage.setItem('activeCategory',activeCategory)
@@ -18,9 +20,10 @@ const ItemsHome = () => {
     const{cart} = useCart()
     const[searchTerm,setsearchTerm] = useState('')
 
-    const handleSearch = (term) =>{
-        setsearch(term)
+    const handleSearch = (term) => {
+      setsearchTerm(term);
     }
+
 
     //CREATE A SIDEBAR CATEGORY
     const sidebarCategories = [
@@ -54,17 +57,21 @@ const ItemsHome = () => {
           <div className={itemsHomeStyles.categoryList}>
             <ul className='space-y-3'>
               {sidebarCategories.map((category) => {
-                <li key ={category.name}>
+                return(                <li key ={category.name}>
                   <button onClick={ () =>{
-                    setActiceCategory(category.value || category.name)
+                    setActiveCategory(category.value || category.name)
                     setsearchTerm('')
                   }}
                   
                   className={`${itemsHomeStyles.categoryItem}
                   ${(activeCategory === (category.value || category.name)) && !searchTerm ? itemsHomeStyles.activeCategory :itemsHomeStyles.inactiveCategory}`}>
-                    
+                    <div className={itemsHomeStyles.categoryIcon}>
+                      {category.icon}
+                    </div>
+                    <span className={itemsHomeStyles.categoryName}>{category.name}</span>
                   </button>
                 </li>
+                );
               })}
             </ul>
           </div>
