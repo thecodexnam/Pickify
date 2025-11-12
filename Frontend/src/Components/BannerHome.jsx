@@ -3,6 +3,7 @@ import { bannerStyles } from '../assets/dummyStyles'
 import { FiSearch, FiTruck } from 'react-icons/fi'
 import { useNavigate } from 'react-router-dom'
 import { features } from '../assets/Dummy'
+import BannerFood from '../assets/Foodbanner.png'
 
 const BannerHome = ({onSearch}) => {
     
@@ -74,6 +75,19 @@ const BannerHome = ({onSearch}) => {
                             )
                         })} 
                     </div>
+                </div>
+
+                {/* RIGHT IMAGE */}
+                <div className='relative flex justify-center'>
+                    <div className={bannerStyles.imageContainer}>
+                        <div className={bannerStyles.imageInner}>
+                            <img src={BannerFood} alt="Bannner" className='object-cover w-full h-full' />
+                        </div>
+                    </div>
+                        <div className="hidden sm:block absolute -top-4 -right-4 w-20 h-20 rounded-full bg-mint-200 opacity-20"></div>
+                        <div className="hidden md:block absolute -bottom-4 -left-4 w-28 h-28 rounded-full bg-teal-100 opacity-20"></div>
+                        <div className="hidden lg:block absolute top-1/4 -left-6 w-20 h-20 rounded-full bg-seafoam-100 opacity-20"></div>
+
                 </div>
             </div>
         </div>
