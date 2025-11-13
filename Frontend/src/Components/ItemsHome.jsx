@@ -5,6 +5,7 @@ import { useNavigate } from 'react-router-dom'
 import { FaThList } from 'react-icons/fa'
 import {categories} from '../assets/dummyData'
 import { useCart } from '../CartContext'
+import { act } from 'react'
 
   const ItemsHome = () => {
     const [activeCategory, setActiveCategory] = useState(() => {
@@ -76,6 +77,24 @@ import { useCart } from '../CartContext'
             </ul>
           </div>
         </aside>
+        {/* MAIN CONTENT */}
+        <main className={itemsHomeStyles.mainContent}>
+          {/* MOBILE CATEGORY SCROLL */}
+          <div className={itemsHomeStyles.mobileCategories}>
+            <div className='flex space-x-4'>
+              {sidebarCategories.map((cat) => (
+                <button key={cat.name} onClick={() =>{
+                  setActiveCategory(cat.value || cat.name)
+                  setsearchTerm(' ')
+                }} className={`${itemsHomeStyles.mobileCategoryItem} ${activeCategory === (cat.value || cat.name) && !searchTerm ? itemsHomeStyles.activeMobileCategory : itemsHomeStyles.inactiveMobileCategory }`}>
+                  {cat.name}
+                </button>
+              ))}
+
+            </div>
+          </div>
+        </main>
+
       </div>
     </div>
   )
