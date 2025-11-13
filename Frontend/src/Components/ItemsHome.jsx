@@ -117,10 +117,11 @@ import { act } from 'react'
           <div className='text-center mb-6'>
               <h2 className={itemsHomeStyles.sectionTitle}
               style={{
-                fontFamily:"'playfair Display'"
+                fontFamily:"'playfair Display', serif"
               }}
               >
-                
+                {searchTerm ? "Search Results"
+                : (activeCategory === "ALL" ? 'Feature Product' : `Best ${activeCategory}`)} 
               </h2>
           </div>
         </main> 
