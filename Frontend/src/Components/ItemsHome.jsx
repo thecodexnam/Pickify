@@ -124,6 +124,7 @@ import { act } from 'react'
                 : (activeCategory === "ALL" ? 'Feature Product' : `Best ${activeCategory}`)} 
               </h2>
           </div>
+          
         </main> 
       </div>
     </div>
