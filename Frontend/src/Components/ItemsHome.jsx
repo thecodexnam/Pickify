@@ -3,7 +3,7 @@ import { itemsHomeStyles } from '../assets/dummyStyles'
 import BannerHome from './BannerHome'
 import { useNavigate } from 'react-router-dom'
 import { FaThList } from 'react-icons/fa'
-import {categories} from '../assets/dummyData'
+import {categories, products} from '../assets/dummyData'
 import { useCart } from '../CartContext'
 import { act } from 'react'
 
@@ -20,6 +20,9 @@ import { act } from 'react'
     const navigate = useNavigate()
     const{cart} = useCart()
     const[searchTerm,setsearchTerm] = useState('')
+
+    // SEARCH FEATURE
+    const productMatchesSearch = (products)
 
     const handleSearch = (term) => {
       setsearchTerm(term);
@@ -123,8 +126,14 @@ import { act } from 'react'
                 {searchTerm ? "Search Results"
                 : (activeCategory === "ALL" ? 'Feature Product' : `Best ${activeCategory}`)} 
               </h2>
+              <div className={itemsHomeStyles.sectionDivider}>
+              </div>
+              {/* PRODUCT GRID */}
+              <div className={itemsHomeStyles.productsGrid}>
+
+              </div>
           </div>
-          
+
         </main> 
       </div>
     </div>
