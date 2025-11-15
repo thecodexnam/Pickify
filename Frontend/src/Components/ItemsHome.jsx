@@ -52,6 +52,11 @@ import { act } from 'react'
         else removefromCart (product.id)
     }
 
+    // REDIRECT TO ITEMS
+    const redirectToItemPage = () =>{
+      navigate('/item', {state:{category: activeCategory}})
+    }
+
     const handleSearch = (term) => {
       setsearchTerm(term);
     }
@@ -109,67 +114,78 @@ import { act } from 'react'
           </div>
         </aside>
         {/* MAIN CONTENT */}
-        <main className={itemsHomeStyles.mainContent}>
-          {/* MOBILE CATEGORY SCROLL */}
-          <div className={itemsHomeStyles.mobileCategories}>
-            <div className='flex space-x-4'>
-              {sidebarCategories.map((cat) => (
-                <button
-                 key={cat.name} 
-                 onClick={() =>{
-                  setActiveCategory(cat.value || cat.name)
-                  setsearchTerm('')
-                }} 
-                className={`${itemsHomeStyles.mobileCategoryItem} ${
-                  activeCategory === (cat.value || cat.name) && !searchTerm 
-                  ? itemsHomeStyles.activeMobileCategory 
-                  : itemsHomeStyles.inactiveMobileCategory
-                  }`}>
-                  {cat.name}
-                </button>
-              ))}
-            </div>
-          </div>
-          {/* SEARCH RESULT */}
-          {searchTerm && (
-            <div className={itemsHomeStyles.searchResults}>
-              <div className='flex items-center justify-center'>
-                 <span className='text-emerald-700 font-medium'>
-                  Search results for : <span className='font-bold'>"{searchTerm}"</span>
-                 </span>
-
-                  <button onCanPlay={() => setsearchTerm('')} className='ml-4 text-emerald-500 hover:text-shadow-emerald-700 p-1 rounded-b-full transition-colors'>
-                    <span className='text-sm bg-emerald-100 px-2 py-1 rounded-b-full'>Clear</span>
-                  </button>
-              </div>
-            </div>
-          )}
-          {/* SECTION TITLE */}
-          <div className='text-center mb-6'>
-              <h2 className={itemsHomeStyles.sectionTitle}
-              style={{
-                fontFamily:"'playfair Display', serif"
+    <main className={itemsHomeStyles.mainContent}>
+      {/* MOBILE CATEGORY SCROLL */}
+      <div className={itemsHomeStyles.mobileCategories}>
+        <div className="flex space-x-4">
+          {sidebarCategories.map((cat) => (
+            <button
+              key={cat.name}
+              onClick={() => {
+                setActiveCategory(cat.value || cat.name);
+                setsearchTerm("");
               }}
-              >
-                {searchTerm ? "Search Results"
-                : (activeCategory === "ALL" ? 'Feature Product' : `Best ${activeCategory}`)} 
-              </h2>
-              <div className={itemsHomeStyles.sectionDivider}>
-              </div>
-              {/* PRODUCT GRID */}
-              <div className={itemsHomeStyles.productsGrid}>
-                  {searchedProducts.length > 0 ? (
-                    searchedProducts.map((product) => {
-                      const qty = getQuantity(product.id)
-                    })
-                  )}
-              </div>
-          </div>
-
-        </main> 
+              className={`${itemsHomeStyles.mobileCategoryItem} ${
+                activeCategory === (cat.value || cat.name) && !searchTerm
+                  ? itemsHomeStyles.activeMobileCategory
+                  : itemsHomeStyles.inactiveMobileCategory
+              }`}
+            >
+              {cat.name}
+            </button>
+          ))}
+        </div>
       </div>
-    </div>
-  )
-}
 
-export default ItemsHome
+      {/* SEARCH RESULT */}
+      {searchTerm && (
+        <div className={itemsHomeStyles.searchResults}>
+          <div className="flex items-center justify-center">
+            <span className="text-emerald-700 font-medium">
+              Search results for:{" "}
+              <span className="font-bold">"{searchTerm}"</span>
+            </span>
+
+            <button
+              onClick={() => setsearchTerm("")}
+              className="ml-4 text-emerald-500 hover:text-shadow-emerald-700 p-1 rounded-b-full transition-colors"
+            >
+              <span className="text-sm bg-emerald-100 px-2 py-1 rounded-b-full">
+                Clear
+              </span>
+            </button>
+          </div>
+        </div>
+      )}
+
+      {/* SECTION TITLE */}
+      <div className="text-center mb-6">
+        <h2
+          className={itemsHomeStyles.sectionTitle}
+          style={{ fontFamily: "'Playfair Display', serif" }}
+        >
+          {searchTerm
+            ? "Search Results"
+            : activeCategory === "ALL"
+            ? "Feature Product"
+            : `Best ${activeCategory}`}
+        </h2>
+        <div className={itemsHomeStyles.sectionDivider} />
+      </div>
+
+      {/* PRODUCT GRID */}
+      <div className={itemsHomeStyles.productsGrid}>
+        {searchedProducts.length > 0 &&
+          searchedProducts.map((product) => {
+            const qty = getQuantity(product.id);
+            
+          })}
+      </div>
+    </main>
+    
+          </div>
+        </div>
+      )
+    }
+
+    export default ItemsHome
