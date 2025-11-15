@@ -22,7 +22,18 @@ import { act } from 'react'
     const[searchTerm,setsearchTerm] = useState('')
 
     // SEARCH FEATURE
-    const productMatchesSearch = (products)
+    const productMatchesSearch = (product,term)=>{
+      if(!term )return true
+      const clearTerm = term.trim().toLowercase()
+
+      const searchWords = clearTerm.split(/\s+/)
+
+      return searchWords.every(word =>{
+        product.name.toLowercase().include(word)
+      })
+    }
+
+    //SEARCH ACROSS ALL PROJECTS
 
     const handleSearch = (term) => {
       setsearchTerm(term);
