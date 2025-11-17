@@ -11,7 +11,7 @@ import { act } from 'react'
     const [activeCategory, setActiveCategory] = useState(() => {
     return localStorage.getItem('activeCategory') || 'All';
   });
-
+ 
 
     useEffect(()=>{
       localStorage.setItem('activeCategory',activeCategory)
