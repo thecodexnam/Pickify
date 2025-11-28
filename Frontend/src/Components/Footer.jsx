@@ -1,5 +1,6 @@
 import React from 'react'
 import { footerStyles } from '../assets/dummyStyles'
+import { FaFacebookF, FaTwitter, FaInstagram, FaYoutube } from 'react-icons/fa';
 
 const Footer = () => {
 
@@ -35,7 +36,7 @@ const Footer = () => {
             {/* BRAND */}
             <div>
               <h2 className={footerStyles.brandTitle}>
-                Pickify <span className={footerStyles.brandSpan}>Pickify</span>
+                <span className={footerStyles.brandSpan}>Pickify</span>
               </h2>
             </div>
           </div>
