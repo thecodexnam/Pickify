@@ -38,6 +38,18 @@ const Footer = () => {
               <h2 className={footerStyles.brandTitle}>
                 Pick<span className={footerStyles.brandSpan}>ify</span>
               </h2>
+              <p className={footerStyles.brandText}>
+                Bringing uou the freshest organic produce since 2020. Our mission is to delivers farm-fresh goodness straight to your doorsteps.
+              </p>
+
+              <div className='space-x-3 flex'>
+                { socialLinks.map((social,idx) =>(
+                  <a href={social.url} key={idx} target='_blank' aria-label={`Visit our ${social.icon.name.replace('Fa','')} page`} className={footerStyles.socialLink}>
+                    <social.icon className={footerStyles.socialIcon}></social.icon>
+                  </a>
+                ))}
+              </div>
+
             </div>
           </div>
         </div>
